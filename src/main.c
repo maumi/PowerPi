@@ -2,6 +2,7 @@
 
 Window* window;
 MenuLayer *menu_layer;
+int send_counter = 0;
 
 enum {
   KEY_ON = 1,
@@ -25,7 +26,14 @@ void send_int(uint8_t key, uint8_t device)
     //APP_LOG(APP_LOG_LEVEL_INFO, "Send result: %u ", err_app_send);
     if (err_app_send != 0)
     {
-      send_int(key, device);  
+      send_counter++;
+      APP_LOG(APP_LOG_LEVEL_INFO, "Send counter %d", send_counter);
+      if (send_counter < 20) {
+        send_int(key, device);
+      }
+    }
+    else {
+      send_counter = 0;
     }
 }
 
