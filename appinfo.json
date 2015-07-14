@@ -1,0 +1,34 @@
+{
+    "appKeys": {
+        "anlage": 5,
+        "device": 12,
+        "lampe": 6,
+        "off": 0,
+        "on": 1,
+        "status": 11
+    },
+    "capabilities": [
+        ""
+    ],
+    "companyName": "maumi87@gmail.com",
+    "longName": "PowerPi",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/strom-signet (1).png",
+                "menuIcon": true,
+                "name": "MENU_ICON",
+                "type": "png"
+            }
+        ]
+    },
+    "sdkVersion": "2",
+    "shortName": "PowerPi",
+    "uuid": "00a5ce20-69b1-4bf8-968a-20aab337fa69",
+    "versionCode": 1,
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
