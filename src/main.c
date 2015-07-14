@@ -12,22 +12,10 @@ enum {
   KEY_DEVICE = 12
 };
 
-void send_message(void){
-	DictionaryIterator *iter;
-	
-	app_message_outbox_begin(&iter);
-	dict_write_uint8(iter, KEY_ON, 0x1);
-	
-	dict_write_end(iter);
-  app_message_outbox_send();
-}
-
 void send_int(uint8_t key, uint8_t device)
 {
     DictionaryIterator *iter;
     app_message_outbox_begin(&iter);
- 
-    //dict_write_uint8(iter, key, cmd);
 
     dict_write_uint8(iter, KEY_STATUS , key);
     dict_write_uint8(iter, KEY_DEVICE, device);
@@ -43,7 +31,7 @@ void send_int(uint8_t key, uint8_t device)
 
 static void outbox_failed_callback(DictionaryIterator *iterator, AppMessageResult reason, void *context) {
   APP_LOG(APP_LOG_LEVEL_ERROR, "Outbox send failed!");
-  
+  vibes_short_pulse();
 }
 
 static void outbox_sent_callback(DictionaryIterator *iterator, void *context) {
@@ -109,8 +97,7 @@ void window_load(Window *window)
         .draw_row = (MenuLayerDrawRowCallback) draw_row_callback,
         .get_num_rows = (MenuLayerGetNumberOfRowsInSectionsCallback) num_rows_callback,
         .select_click = (MenuLayerSelectCallback) select_click_callback,
-        .select_long_click = (MenuLayerSelectCallback) select_long_click_callback
-          
+        .select_long_click = (MenuLayerSelectCallback) select_long_click_callback 
     };
     menu_layer_set_callbacks(menu_layer, NULL, callbacks);
  
